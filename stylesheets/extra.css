@@ -1,0 +1,115 @@
+/*
+ * Code block styling matched to the Sphinx ReadTheDocs theme, as used by the
+ * ERF documentation. Colours are taken from the Pygments "sphinx" style and the
+ * sphinx_rtd_theme stylesheet.
+ *
+ * Applied in both light and dark schemes so blocks look identical everywhere,
+ * matching ERF (which has no dark mode).
+ */
+
+:root,
+[data-md-color-scheme="slate"] {
+  /* container */
+  --md-code-bg-color: #eeffcc;
+  --md-code-fg-color: #404040;
+
+  /* token colours — Pygments "sphinx" style */
+  --md-code-hl-keyword-color: #007020;
+  --md-code-hl-string-color: #4070a0;
+  --md-code-hl-comment-color: #408090;
+  --md-code-hl-number-color: #208050;
+  --md-code-hl-function-color: #06287e;
+  --md-code-hl-name-color: #0e84b5;
+  --md-code-hl-constant-color: #60add5;
+  --md-code-hl-variable-color: #bb60d5;
+  --md-code-hl-operator-color: #666;
+  --md-code-hl-punctuation-color: #666;
+  --md-code-hl-special-color: #d55537;
+  --md-code-hl-generic-color: #c65d09;
+}
+
+/* Container: thin grey border, no rounded corners, RTD spacing */
+.md-typeset .highlight,
+.md-typeset pre > code {
+  border-radius: 0;
+}
+
+.md-typeset .highlight {
+  border: 1px solid #e1e4e5;
+  margin: 1px 0 24px;
+  overflow-x: auto;
+}
+
+.md-typeset pre > code {
+  padding: 12px;
+}
+
+/*
+ * Token colours applied directly to Pygments classes as well as through the
+ * variables above, so the mapping does not depend on Material's internal
+ * token-to-variable assignments.
+ */
+.md-typeset .highlight .k,
+.md-typeset .highlight .kn,
+.md-typeset .highlight .kc,
+.md-typeset .highlight .kd,
+.md-typeset .highlight .kr,
+.md-typeset .highlight .nb { color: #007020; font-weight: 700; }
+
+.md-typeset .highlight .kt { color: #902000; }
+
+.md-typeset .highlight .s,
+.md-typeset .highlight .s1,
+.md-typeset .highlight .s2,
+.md-typeset .highlight .sb,
+.md-typeset .highlight .sc,
+.md-typeset .highlight .si,
+.md-typeset .highlight .sx,
+.md-typeset .highlight .na { color: #4070a0; }
+
+.md-typeset .highlight .se { color: #4070a0; font-weight: 700; }
+.md-typeset .highlight .sd { color: #4070a0; font-style: italic; }
+
+.md-typeset .highlight .c,
+.md-typeset .highlight .c1,
+.md-typeset .highlight .cm { color: #408090; font-style: italic; }
+
+.md-typeset .highlight .m,
+.md-typeset .highlight .mi,
+.md-typeset .highlight .mf,
+.md-typeset .highlight .mh,
+.md-typeset .highlight .mo { color: #208050; }
+
+.md-typeset .highlight .nf { color: #06287e; }
+.md-typeset .highlight .nv { color: #bb60d5; }
+.md-typeset .highlight .no { color: #60add5; }
+.md-typeset .highlight .ni { color: #d55537; font-weight: 700; }
+.md-typeset .highlight .gp { color: #c65d09; font-weight: 700; }
+.md-typeset .highlight .o,
+.md-typeset .highlight .p { color: #666; }
+.md-typeset .highlight .w { color: #bbb; }
+
+.md-typeset .highlight .nc,
+.md-typeset .highlight .nn,
+.md-typeset .highlight .nt { color: #0e84b5; font-weight: 700; }
+
+/*
+ * Inline code: white ground, thin border, RTD red. Font size is left at
+ * Material's default rather than RTD's 75%, which is uncomfortably small.
+ */
+.md-typeset code:not(.md-code__content code):not(pre code) {
+  background-color: #fff;
+  border: 1px solid #e1e4e5;
+  border-radius: 0;
+  color: #e74c3c;
+  padding: 0 5px;
+}
+
+/* Keep inline code inside headings and links inheriting their own colour */
+.md-typeset h1 code,
+.md-typeset h2 code,
+.md-typeset h3 code,
+.md-typeset h4 code,
+.md-typeset a code {
+  color: inherit;
+}
