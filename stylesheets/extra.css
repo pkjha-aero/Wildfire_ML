@@ -1,0 +1,396 @@
+/*
+ * Code block styling matched to the Sphinx ReadTheDocs theme, as used by the
+ * ERF documentation. Colours are taken from the Pygments "sphinx" style and the
+ * sphinx_rtd_theme stylesheet.
+ *
+ * Applied in both light and dark schemes so blocks look identical everywhere,
+ * matching ERF (which has no dark mode).
+ */
+
+:root,
+[data-md-color-scheme="slate"] {
+  /* container */
+  --md-code-bg-color: #eeffcc;
+  --md-code-fg-color: #404040;
+
+  /* token colours — Pygments "sphinx" style */
+  --md-code-hl-keyword-color: #007020;
+  --md-code-hl-string-color: #4070a0;
+  --md-code-hl-comment-color: #408090;
+  --md-code-hl-number-color: #208050;
+  --md-code-hl-function-color: #06287e;
+  --md-code-hl-name-color: #0e84b5;
+  --md-code-hl-constant-color: #60add5;
+  --md-code-hl-variable-color: #bb60d5;
+  --md-code-hl-operator-color: #666;
+  --md-code-hl-punctuation-color: #666;
+  --md-code-hl-special-color: #d55537;
+  --md-code-hl-generic-color: #c65d09;
+}
+
+/* Container: thin grey border, no rounded corners, RTD spacing */
+.md-typeset .highlight,
+.md-typeset pre > code {
+  border-radius: 0;
+}
+
+.md-typeset .highlight {
+  border: 1px solid #e1e4e5;
+  margin: 1px 0 24px;
+  overflow-x: auto;
+}
+
+.md-typeset pre > code {
+  padding: 12px;
+}
+
+/*
+ * Token colours applied directly to Pygments classes as well as through the
+ * variables above, so the mapping does not depend on Material's internal
+ * token-to-variable assignments.
+ */
+.md-typeset .highlight .k,
+.md-typeset .highlight .kn,
+.md-typeset .highlight .kc,
+.md-typeset .highlight .kd,
+.md-typeset .highlight .kr,
+.md-typeset .highlight .nb { color: #007020; font-weight: 700; }
+
+.md-typeset .highlight .kt { color: #902000; }
+
+.md-typeset .highlight .s,
+.md-typeset .highlight .s1,
+.md-typeset .highlight .s2,
+.md-typeset .highlight .sb,
+.md-typeset .highlight .sc,
+.md-typeset .highlight .si,
+.md-typeset .highlight .sx,
+.md-typeset .highlight .na { color: #4070a0; }
+
+.md-typeset .highlight .se { color: #4070a0; font-weight: 700; }
+.md-typeset .highlight .sd { color: #4070a0; font-style: italic; }
+
+.md-typeset .highlight .c,
+.md-typeset .highlight .c1,
+.md-typeset .highlight .cm { color: #408090; font-style: italic; }
+
+.md-typeset .highlight .m,
+.md-typeset .highlight .mi,
+.md-typeset .highlight .mf,
+.md-typeset .highlight .mh,
+.md-typeset .highlight .mo { color: #208050; }
+
+.md-typeset .highlight .nf { color: #06287e; }
+.md-typeset .highlight .nv { color: #bb60d5; }
+.md-typeset .highlight .no { color: #60add5; }
+.md-typeset .highlight .ni { color: #d55537; font-weight: 700; }
+.md-typeset .highlight .gp { color: #c65d09; font-weight: 700; }
+.md-typeset .highlight .o,
+.md-typeset .highlight .p { color: #666; }
+.md-typeset .highlight .w { color: #bbb; }
+
+.md-typeset .highlight .nc,
+.md-typeset .highlight .nn,
+.md-typeset .highlight .nt { color: #0e84b5; font-weight: 700; }
+
+/*
+ * Inline code: white ground, thin border, RTD red. Font size is left at
+ * Material's default rather than RTD's 75%, which is uncomfortably small.
+ */
+.md-typeset code:not(.md-code__content code):not(pre code) {
+  background-color: #fff;
+  border: 1px solid #e1e4e5;
+  border-radius: 0;
+  color: #e74c3c;
+  padding: 0 5px;
+}
+
+/* Keep inline code inside headings and links inheriting their own colour */
+.md-typeset h1 code,
+.md-typeset h2 code,
+.md-typeset h3 code,
+.md-typeset h4 code,
+.md-typeset a code {
+  color: inherit;
+}
+
+/*
+ * Feature-selection matrix on the design assessment page, mirroring the colour
+ * coding used in the experiment registry spreadsheet.
+ */
+.feature-matrix {
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  margin: 1em 0;
+}
+
+.feature-matrix th,
+.feature-matrix td {
+  border: 1px solid #e1e4e5;
+  padding: 4px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.feature-matrix th {
+  background: #f3f4f4;
+  color: #404040;
+  font-weight: 700;
+}
+
+.feature-matrix td.on {
+  background: #00b050;
+  color: #fff;
+  font-weight: 700;
+}
+
+.feature-matrix td.grp {
+  text-align: left;
+  font-style: italic;
+}
+
+[data-md-color-scheme="slate"] .feature-matrix th {
+  background: #3b3b3b;
+  color: #e6e6e6;
+}
+
+/*
+ * Heading colours: one brown ramp, graded by level.
+ *
+ * In the light scheme the ramp runs dark to light as headings get deeper, so
+ * depth reads as decreasing weight. In the slate scheme it is inverted — light
+ * to dark — for the same reason against a dark ground.
+ *
+ * Steps are spaced evenly in relative luminance rather than in hex value, and
+ * every level clears 4.5:1 against its own background: 16.9:1 down to 4.8:1 in
+ * light, 9.9:1 down to 4.8:1 in slate.
+ */
+
+:root {
+  --mlap-h1-color: #2c180a;
+  --mlap-h2-color: #4a2811;
+  --mlap-h3-color: #673818;
+  --mlap-h4-color: #84471f;
+  --mlap-h5-color: #9c5424;
+  --mlap-h6-color: #ae5e29;
+
+  --mlap-pagenav-fill: #dbeeff;
+  --mlap-pagenav-fill-hover: #c3e2fb;
+  --mlap-pagenav-fg: #12547f;
+  --mlap-pagenav-label: #3d6f96;
+}
+
+[data-md-color-scheme="slate"] {
+  --mlap-h1-color: #edddcf;
+  --mlap-h2-color: #e4cdb8;
+  --mlap-h3-color: #dbbca0;
+  --mlap-h4-color: #d2ab88;
+  --mlap-h5-color: #ca9c73;
+  --mlap-h6-color: #c49164;
+
+  --mlap-pagenav-fill: #1e3a52;
+  --mlap-pagenav-fill-hover: #275070;
+  --mlap-pagenav-fg: #a8d8f5;
+  --mlap-pagenav-label: #8ab8d8;
+}
+
+/*
+ * Bold at every level. Material ships h1 and h2 at 300 and h3 at 400; h4 to h6
+ * are already 700, so only the top three change.
+ */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-weight: 700;
+}
+
+.md-typeset h1 { color: var(--mlap-h1-color); }
+.md-typeset h2 { color: var(--mlap-h2-color); }
+.md-typeset h3 { color: var(--mlap-h3-color); }
+.md-typeset h4 { color: var(--mlap-h4-color); }
+.md-typeset h5 { color: var(--mlap-h5-color); }
+.md-typeset h6 { color: var(--mlap-h6-color); }
+
+/* Keep inline code in the two deepest levels inheriting the heading colour */
+.md-typeset h5 code,
+.md-typeset h6 code {
+  color: inherit;
+}
+
+/*
+ * Admonitions at body size. Material sets .64rem, which reads as a footnote
+ * beside the text it sits in — wrong for boxes carrying substantive content.
+ *
+ * `inherit` rather than a fixed .8rem, so the boxes track the surrounding type
+ * at every breakpoint instead of pinning to one size. The title stays bold
+ * through Material's own font-weight rule, and the icon keeps its position
+ * because the title's padding and the icon box are sized in rem, not em.
+ */
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: inherit;
+}
+
+/*
+ * Previous / Next navigation at the top of the page, rendered by
+ * overrides/main.html. Material's own footer version is disabled, so this is
+ * the only copy on the page.
+ *
+ * Sits inside .md-content__inner above the page title, separated from it by a
+ * rule rather than a box, so it reads as a wayfinding strip and not as content.
+ */
+.md-typeset .mlap-pagenav {
+  background: var(--md-default-bg-color);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0 0 1.4rem;
+  padding-bottom: .5rem;
+  padding-top: .6rem;
+  position: sticky;
+  top: 2.4rem;
+  z-index: 2;
+}
+
+/*
+ * Sticky, so the links stay reachable while reading rather than only at the
+ * top. 2.4rem is the header height — the same offset Material's own sidebar
+ * sticks at. Sticking ends at the foot of .md-content__inner, so the strip
+ * travels the whole page and releases at the end of the content.
+ *
+ * An opaque background is required: without it the page text scrolls through
+ * the strip.
+ */
+
+/*
+ * Anchor targets need to clear the strip as well as the header. Material sets
+ * 3.6rem for the header alone; the extra covers the strip, so a linked heading
+ * lands below it rather than behind it.
+ */
+.md-typeset :target {
+  --md-scroll-margin: 6.4rem;
+}
+
+/*
+ * Light blue buttons. The colour is carried by a pale fill rather than by the
+ * text: no light blue clears 4.5:1 as text on white — the palest that passes is
+ * already a mid blue — so a pale ground with dark blue text is what makes the
+ * control read as light blue and stay legible. Text sits at 6.8:1 on the light
+ * fill and 7.8:1 on the dark one.
+ */
+.md-typeset .mlap-pagenav__link {
+  background: var(--mlap-pagenav-fill);
+  border-radius: .3rem;
+  color: var(--mlap-pagenav-fg);
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  max-width: 48%;
+  padding: .3rem .5rem;
+  transition: background-color .2s;
+}
+
+.md-typeset .mlap-pagenav__link:hover,
+.md-typeset .mlap-pagenav__link:focus {
+  background: var(--mlap-pagenav-fill-hover);
+  color: var(--mlap-pagenav-fg);
+}
+
+/* Keeps Next hard right when Previous is absent, as on the first page */
+.md-typeset .mlap-pagenav__link--next {
+  margin-left: auto;
+  text-align: right;
+}
+
+/*
+ * The label is dimmed against the title, as before, but tinted to the button's
+ * own blue rather than the page's grey — still 4.5:1 on either fill.
+ */
+.md-typeset .mlap-pagenav__direction {
+  color: var(--mlap-pagenav-label);
+  font-size: .72em;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.md-typeset .mlap-pagenav__title {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.md-typeset .mlap-pagenav__link--prev .mlap-pagenav__direction::before {
+  content: "← ";
+}
+
+.md-typeset .mlap-pagenav__link--next .mlap-pagenav__direction::after {
+  content: " →";
+}
+
+/* Stack on narrow screens, keeping each link on its own side */
+@media screen and (max-width: 30em) {
+  .md-typeset .mlap-pagenav {
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .md-typeset .mlap-pagenav__link {
+    max-width: 100%;
+  }
+
+  /* Stacked, the strip is roughly one line taller */
+  .md-typeset :target {
+    --md-scroll-margin: 8.4rem;
+  }
+}
+
+/*
+ * Breadcrumb trail in the header, rendered by overrides/partials/header.html
+ * in place of the site name.
+ *
+ * Spacing lives here rather than in the template because the Jinja macro
+ * strips whitespace around each crumb.
+ *
+ * Material sets font-weight 700 on the first header topic, which would bold
+ * the whole trail; the ancestors are stepped back to normal weight so the
+ * current page stays the emphasised one.
+ */
+.md-header__topic .mlap-crumb {
+  font-weight: 400;
+  opacity: .75;
+}
+
+.md-header__topic .mlap-crumb--current {
+  font-weight: 700;
+  opacity: 1;
+}
+
+.md-header__topic .mlap-crumb__sep {
+  margin: 0 .35em;
+  opacity: .6;
+}
+
+/*
+ * Highlighted text (==like this==, via pymdownx.mark). Material paints only the
+ * background and leaves the text colour alone, so the ground is what carries
+ * the emphasis: a warm amber, picked to sit with the brown heading ramp rather
+ * than against it.
+ *
+ * Body text reads at 13.4:1 on the light ground and 7.2:1 on the dark one.
+ */
+:root {
+  --md-typeset-mark-color: #ffe9b0;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-typeset-mark-color: #5c4618;
+}
+
+/* Inline code inside a highlight keeps the amber, not its own white chip */
+.md-typeset mark code {
+  background-color: transparent;
+  border-color: #0000001f;
+}

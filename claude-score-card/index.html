@@ -1,0 +1,1883 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Machine Learning Automation Pipeline for wildfire fuel moisture prediction">
+      
+      
+      
+        <link rel="canonical" href="https://software.llnl.gov/MLAP/claude-score-card/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../user-guide/installation/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Claude Opus Score Card - MLAP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#claude-opus-score-card" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MLAP" class="md-header__button md-logo" aria-label="MLAP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span class="mlap-crumb mlap-crumb--current">Claude Opus Score Card</span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span class="mlap-crumb mlap-crumb--current">Claude Opus Score Card</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/LLNL/MLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Lawrence Livermore GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MLAP" class="md-nav__button md-logo" aria-label="MLAP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MLAP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/LLNL/MLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Lawrence Livermore GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Claude Opus Score Card
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Claude Opus Score Card
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-was-scored" class="md-nav__link">
+    <span class="md-ellipsis">
+      How this was scored
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why it works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-a-collection-is-assembled" class="md-nav__link">
+    <span class="md-ellipsis">
+      How a collection is assembled
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How a collection is assembled">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-feature-selection-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      The feature-selection matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-same-structure-in-the-step-4-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      The same structure in the Step 4 configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-stage-resists-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why this stage resists automation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applicability-beyond-wildfire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applicability beyond wildfire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Applicability beyond wildfire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-tightly-each-stage-is-bound-to-the-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      How tightly each stage is bound to the domain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-transfers-unchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      What transfers unchanged
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-a-port-would-actually-involve" class="md-nav__link">
+    <span class="md-ellipsis">
+      What a port would actually involve
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-design-has-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where the design has gaps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deciphering-the-authors-architecting-and-research-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deciphering the author's architecting and research skills
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deciphering the author's architecting and research skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-archive-reads-as-a-research-programme-not-a-set-of-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      The archive reads as a research programme, not a set of runs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-architecture-is-scar-tissue-not-pattern-following" class="md-nav__link">
+    <span class="md-ellipsis">
+      The architecture is scar tissue, not pattern-following
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/running-on-hpc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Running on HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pipeline Steps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Pipeline Steps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/step1-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Step 1: Extract Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/step2-prepare/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Step 2: Prepare Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/step3-train/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Step 3: Train Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/step4-evaluate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Step 4: Evaluate Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/step5-analyze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Step 5: Analyze and Predict
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/json-reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JSON Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Science with MLAP
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Science with MLAP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../science/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Science Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Assessments
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Assessments
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../science/data-sampling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Sampling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../science/history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Historical Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../science/ml-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Random Forest Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../science/physical-quantities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Physical Quantities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../science/mlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-layer Perceptron
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/optimizations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimizations in the Source
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+    <nav class="mlap-pagenav" aria-label="Page navigation">
+      
+        <a href=".." class="mlap-pagenav__link mlap-pagenav__link--prev" rel="prev">
+          <span class="mlap-pagenav__direction">Previous</span>
+          <span class="mlap-pagenav__title">Home</span>
+        </a>
+      
+      
+        <a href="../user-guide/installation/" class="mlap-pagenav__link mlap-pagenav__link--next" rel="next">
+          <span class="mlap-pagenav__direction">Next</span>
+          <span class="mlap-pagenav__title">Installation</span>
+        </a>
+      
+    </nav>
+  
+  
+                  
+
+  
+  
+
+
+<h1 id="claude-opus-score-card">Claude Opus Score Card<a class="headerlink" href="#claude-opus-score-card" title="Permanent link">&para;</a></h1>
+<p>An independent review of MLAP's automation architecture, conducted by
+<strong><a href="https://www.anthropic.com/claude/opus">Claude Opus 5</a></strong> while building this
+documentation, and revised after the author responded to each point.</p>
+<p>It is recorded here because it explains <strong>why the pipeline is structured the way
+it is</strong> — the nomenclature conventions described in
+<a href="../user-guide/running-on-hpc/#nomenclature">Running on HPC</a> exist to solve a
+specific problem, and the review is direct evidence that they solve it.</p>
+<p><strong>Automation design: 9.5/10.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Scope and basis</p>
+<p>This assesses the <strong>automation design</strong> — how well the pipeline supports
+running and interpreting large parametric studies.</p>
+<p>The evidence comes from the <strong>source code and the results archive alone</strong>.
+Draft papers covering the pipeline and the science exist but are work in
+progress and unpublished, so nothing here depends on them.</p>
+<p><strong>What was assessed.</strong> The code reviewed is
+<a href="https://github.com/LLNL/MLAP/tree/v1.0"><code>v1.0</code></a>, the project's first and
+only release —
+commit <a href="https://github.com/LLNL/MLAP/commit/0c0714adb1d7d9a825ec5f30f5448b4b295cd282"><code>0c0714a</code></a>,
+dated <strong>18 September 2024</strong>. Browse it as it stood:
+<a href="https://github.com/LLNL/MLAP/tree/v1.0">the repository at the tag</a>,
+<a href="https://github.com/LLNL/MLAP/tree/v1.0/MachineLearningAutomationPipleline">the pipeline itself</a>,
+or <a href="https://github.com/LLNL/MLAP/releases/tag/v1.0">the release</a>.</p>
+<p>The assessment was carried out on <strong>18 September 2026</strong> and revised on
+<strong>20 September 2026</strong> after the author responded to each point.</p>
+<p><strong>What has changed since.</strong> Everything added between the release and the
+assessment was documentation and presentation — the site you are reading,
+its styling and navigation. No scoring here reflects a change to the
+pipeline itself.</p>
+<p>One functional change has been made since the assessment, on
+<strong>21 September 2026</strong>: the seven step scripts now read their JSON input
+paths from <code>sys.argv</code> rather than from hardcoded absolute paths. It touches
+16 assignments and nothing else — undo it and every module is logically
+identical to <code>v1.0</code>. It changes none of the ratings, and in particular it
+is unrelated to the <strong>Input validation</strong> gap below, which is about checking
+the <em>contents</em> of a configuration before submission and remains open.</p>
+<p><strong>The two input modes were deliberate.</strong> A fixed path suits interactive
+work; command-line arguments suit batch submission. <code>v1.0</code> carries both,
+each under its own label, so the distinction was drawn at the time and not
+in hindsight. The archive shows which mode actually ran: the tagged script
+hardcodes <code>json_extract_data_000.json</code>, yet Step 3 output covers <strong>76
+distinct dataset indices</strong>, <code>dataset_000</code> through <code>dataset_093</code>. Had the
+committed file been the one executed, every run would have written the same
+names over the last. What was committed was the script as generated from
+the notebook, carrying the notebook's own setting; the <code>argv</code> line was left
+commented there by oversight. The change above restores the intended
+arrangement rather than introducing it.</p>
+<p><strong>The circumstances the code was written in.</strong> The project's scope was to
+produce analysed data and papers. The automation pipeline was the author's
+own initiative within that, not a funded deliverable, and one person
+covered the <strong>data engineering</strong>, the <strong>computational physics</strong>, the
+<strong>software development</strong>, the <strong>analysis</strong> and the <strong>writing</strong>. Worth
+recording too: <mark><strong>no version of Claude Code existed when <code>v1.0</code> was
+released</strong> in September 2024</mark>. It first appeared as a research preview in
+February 2025. The documentation and the review on this site were produced
+two years after the code, with tooling that was not available while it was
+being written.</p>
+</div>
+<h2 id="how-this-was-scored">How this was scored<a class="headerlink" href="#how-this-was-scored" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>What MLAP does</th>
+<th>Rating</th>
+<th>What would make it perfect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Result traceability</strong></td>
+<td>A run is identified by a (dataset, label, model) triple that appears in every filename it touches</td>
+<td>Strong</td>
+<td>Nothing — this is the load-bearing decision and it holds without exception</td>
+</tr>
+<tr>
+<td><strong>Study interpretability</strong></td>
+<td>Step 4 assembles many runs into a collection matrix of heatmaps and bar plots</td>
+<td>Strong</td>
+<td>Nothing for correctness. Plot cosmetics — legends inside axes, auto-scaled y-axes — occasionally need manual fixing before publication</td>
+</tr>
+<tr>
+<td><strong>Output completeness</strong></td>
+<td>Step 3 records all 7 regression metrics on all 4 evaluation sets for every trained model, unconditionally</td>
+<td>Strong</td>
+<td>Nothing. This is what allowed a diagnosis nobody designed for</td>
+</tr>
+<tr>
+<td><strong>Configuration as data</strong></td>
+<td>Every stage driven by JSON, so configuration is archivable alongside results</td>
+<td>Strong</td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td><strong>Experiment bookkeeping</strong></td>
+<td><a href="../science/overview/#results-archive"><code>WildfireDataDefn.xlsx</code></a> registers every dataset, label and training configuration, and is distributed with the results archive</td>
+<td>Strong</td>
+<td>Nothing — a recipient of the archive can reconstruct study membership without contacting the author</td>
+</tr>
+<tr>
+<td><strong>Staged execution control</strong></td>
+<td>Three <code>action</code> modes submit one stage at a time, so extraction can be verified before preparation, and preparation before training</td>
+<td>Strong</td>
+<td>Nothing — this is a deliberate safety gate, not a missing feature</td>
+</tr>
+<tr>
+<td><strong>Dataset metadata</strong></td>
+<td><code>data_defn.csv</code> records the parameters defining every dataset in a collection</td>
+<td>Good</td>
+<td>Counting conventions did not follow the data as it grew: <code>num_qois</code> and <code>cols_feature</code> do not say whether elevation or wind components are included</td>
+</tr>
+<tr>
+<td><strong>Code-version provenance</strong></td>
+<td>Not recorded</td>
+<td><strong>Absent</strong></td>
+<td><strong>Stamp a commit hash and schema version</strong> into the dataset metadata. This is the largest single gap</td>
+</tr>
+<tr>
+<td><strong>Input validation</strong></td>
+<td>No check before submission</td>
+<td><strong>Absent</strong></td>
+<td><strong>Validate every config in a collection before any job is submitted</strong>, so a typo fails in seconds rather than after hours of queue time</td>
+</tr>
+<tr>
+<td><strong>Failure detection</strong></td>
+<td>Collection membership is curated by hand, so failed runs are simply never listed</td>
+<td>Adequate</td>
+<td>An automated sweep at the simulation location, reporting which expected outputs are missing</td>
+</tr>
+</tbody>
+</table>
+<p>The two items in bold are what separate 9.5 from 10. Both are additive — neither
+requires changing the design.</p>
+<p>A third gap, that the
+<a href="../science/overview/#results-archive">experiment registry</a> was not distributed
+with the results, was closed after this review: the registry now ships inside
+the archive alongside the inputs and outputs.</p>
+<h2 id="the-test">The test<a class="headerlink" href="#the-test" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://www.anthropic.com/claude/opus">Claude Opus 5</a></strong> was given the
+repository and the <a href="../science/overview/#results-archive">results archive</a> —
+roughly 8,600 output files — with no access to the machine that produced them,
+no record of what was run, and no explanation of the naming conventions.</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Step 3 training outputs</td>
+<td>6,045</td>
+</tr>
+<tr>
+<td>Step 4 evaluation outputs</td>
+<td>2,217 across 27 collections</td>
+</tr>
+<tr>
+<td>Step 4 metric CSVs</td>
+<td>757</td>
+</tr>
+<tr>
+<td>Archived input configurations</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="../science/overview/#results-archive">experiment registry</a> was <strong>not</strong>
+available during this test. Everything below was reconstructed from filenames,
+configurations and CSVs alone, which is a harder starting point than a recipient
+of the archive faces today — the registry now ships with it.</p>
+<p>The question was whether the provenance design would allow <strong>which configuration
+produced which number</strong> to be reconstructed from the artifacts alone.</p>
+<p>It did. Five results are worth recording.</p>
+<ul>
+<li>
+<p><strong>Configurations were recoverable from filenames.</strong> Output names such as
+  <code>dataset_015_label_001_Regression_model_003_RF_analysis_001-2018-11-08_22_fm_entire.png</code>
+  carry the full identifying triple. Every artifact could be traced back to the
+  dataset, label and model that produced it without consulting any external
+  index.</p>
+</li>
+<li>
+<p><strong>Independent collections cross-validated.</strong> Dataset 41 appears in two
+  different evaluation collections — <code>eval_002</code> (temporal sampling) and
+  <code>eval_003</code> (spatial sampling) — assembled for different purposes. Both report
+  R² = 0.8906 on the best 95% of test data. That agreement was not designed in:
+  it emerges because the nomenclature makes the same dataset genuinely the same
+  dataset across collections, and it is what established that the metric CSVs
+  could be trusted.</p>
+</li>
+<li>
+<p><strong>An apparent confound was resolvable.</strong> The <code>data_defn.csv</code> files for
+  datasets 39–42 record differing <code>cols_feature</code> values, which would ordinarily
+  invalidate a comparison between them. The explanation turned out to be real
+  variation in the source data: some datasets carry <code>U10</code> and <code>V10</code> as separate
+  components, others carry <code>UMag10</code> directly, and the extraction code handles
+  both. The recorded values were correct throughout. The relevant point for
+  provenance is that the archive did <strong>not</strong> preserve which convention each
+  dataset used — that had to come from the author. A code-version stamp would
+  have made it self-evident.</p>
+</li>
+<li>
+<p><strong>The output supported analysis it was never designed for.</strong> Diagnosing why
+  the MLP underperforms Random Forest required train-versus-test R², loss
+  magnitude against the stopping tolerance, and confirmation across thirty-odd
+  configurations. No study was set up to answer that. All of it was already
+  there: Step 3 records the full regression metric set — seven metrics on train,
+  test, best-95% and best-90% — for every trained model, with no configuration
+  involved. Had only test R² been stored, the obvious economy, the finding would
+  have been unreachable without rerunning everything. Step 4 then lets a
+  collection surface whichever subset of those is of interest, so the
+  aggregation is selective while the underlying record stays complete. Designing
+  output to answer questions that have not been asked yet is the hardest
+  property to get right, and it is the single strongest thing in this
+  architecture.</p>
+</li>
+<li>
+<p><strong>Unwritten studies were recoverable in full.</strong> Fourteen parameter studies
+  existed only as simulation output: four Random Forest hyperparameter studies,
+  eight MLP studies, and two feature-selection studies. All fourteen were
+  reconstructed from the CSVs alone and are documented in the
+  <a href="../science/overview/">Science with MLAP</a> section. Among them was the largest
+  single hyperparameter effect in the entire assessment — disabling Random
+  Forest <code>bootstrap</code> costs 9–12 percentage points of R².</p>
+</li>
+</ul>
+<h2 id="why-it-works">Why it works<a class="headerlink" href="#why-it-works" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Integer nomenclature propagating through every stage.</strong> A run is fully
+  identified by a triple, and that triple appears in every filename it touches.
+  Everything else depends on this.</p>
+</li>
+<li>
+<p><strong>Configurations archived alongside results.</strong> Because each stage is driven by
+  a JSON file, configuration is <em>data</em> and can be stored with the output it
+  produced.</p>
+</li>
+<li>
+<p><strong>Descriptive collection names.</strong> <code>eval_015_RF_estimator_effect</code> states its
+  own purpose. Across 27 collections the convention held without exception.</p>
+</li>
+<li>
+<p><strong>Dataset parameters recorded with metrics.</strong> <code>data_defn.csv</code> sits beside the
+  metric CSVs, so numbers arrive with the parameters that generated them.</p>
+</li>
+<li>
+<p><strong>Exhaustive metric capture at the run level.</strong> Step 3 always records seven
+  metrics on four evaluation sets. What a collection <em>reports</em> is selectable,
+  but what is <em>kept</em> is not — so a question asked later can still be answered.</p>
+</li>
+<li>
+<p><strong>Staged execution with verification gates.</strong> Extraction, preparation and
+  training are submitted separately and deliberately. A flawed extraction cannot
+  silently propagate into trained models, because a human confirms each stage
+  before the next is launched.</p>
+</li>
+</ul>
+<h2 id="how-a-collection-is-assembled">How a collection is assembled<a class="headerlink" href="#how-a-collection-is-assembled" title="Permanent link">&para;</a></h2>
+<p>A collection is not generated automatically. It is a curated comparison, and
+understanding how one is built explains both the strength and the one genuine
+limit of this stage.</p>
+<h3 id="the-feature-selection-matrix">The feature-selection matrix<a class="headerlink" href="#the-feature-selection-matrix" title="Permanent link">&para;</a></h3>
+<p>Each row below is one training configuration — one <code>json_train_model_NNN.json</code>
+file. A green cell means the feature was included. This reproduces the colour
+coding used in <code>WildfireDataDefn.xlsx</code>, the experiment registry, which is where
+the selection is actually made and which ships in the
+<a href="../science/overview/#results-archive">results archive</a>.</p>
+<table class="feature-matrix" markdown="0">
+<thead><tr>
+<th>json_train</th><th>Model</th>
+<th>HGT</th>
+<th>UMag10</th>
+<th>T2</th>
+<th>RH</th>
+<th>VPD</th>
+<th>PREC</th>
+<th>SW</th>
+<th>Group</th></tr></thead>
+<tbody>
+<tr><td><strong>3</strong></td><td>RF</td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="grp">set A</td></tr>
+<tr><td><strong>6</strong></td><td>RF</td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td class="on">&#10003;</td><td></td><td class="grp"></td></tr>
+<tr><td><strong>7</strong></td><td>RF</td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td class="on">&#10003;</td><td class="grp"></td></tr>
+<tr><td><strong>8</strong></td><td>RF</td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td></td><td class="grp"></td></tr>
+<tr><td><strong>9</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="grp">set B</td></tr>
+<tr><td><strong>10</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td class="on">&#10003;</td><td></td><td class="grp"></td></tr>
+<tr><td><strong>11</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td class="on">&#10003;</td><td class="grp"></td></tr>
+<tr><td><strong>12</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td></td><td class="grp"></td></tr>
+<tr><td><strong>13</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td class="grp">set C</td></tr>
+<tr><td><strong>14</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td class="grp"></td></tr>
+<tr><td><strong>15</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td class="on">&#10003;</td><td></td><td class="on">&#10003;</td><td class="grp"></td></tr>
+<tr><td><strong>16</strong></td><td>RF</td><td class="on">&#10003;</td><td class="on">&#10003;</td><td></td><td></td><td class="on">&#10003;</td><td></td><td></td><td class="grp"></td></tr>
+</tbody>
+</table>
+
+<p>Three groups fall out of it, each holding a base feature set constant while
+varying only <code>PREC</code> and <code>SW</code>:</p>
+<ul>
+<li><strong>Set A</strong> — <code>UMag10, T2, RH</code> (no elevation)</li>
+<li><strong>Set B</strong> — <code>HGT, UMag10, T2, RH</code> (elevation added)</li>
+<li><strong>Set C</strong> — <code>HGT, UMag10, VPD</code> (temperature and humidity replaced by VPD)</li>
+</ul>
+<h3 id="the-same-structure-in-the-step-4-configuration">The same structure in the Step 4 configuration<a class="headerlink" href="#the-same-structure-in-the-step-4-configuration" title="Permanent link">&para;</a></h3>
+<p>Those twelve rows transcribe directly into
+<a href="../user-guide/step4-evaluate/#the-collection-matrix"><code>json_eval_sample.json</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">"json_prep_train_maps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"json_label"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="nt">"json_train"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">],</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span><span class="nt">"set_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"UMag10, T2, RH"</span><span class="p">],</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">"subset_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"PREC, SW"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PREC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SW"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"json_label"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="nt">"json_train"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">],</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">"set_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"HGT, UMag10, T2, RH"</span><span class="p">],</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">"subset_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"PREC, SW"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PREC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SW"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"json_label"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">],</span><span class="w"> </span><span class="nt">"json_train"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">],</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">"set_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"HGT, UMag10, VPD"</span><span class="p">],</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">"subset_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"PREC, SW"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PREC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SW"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">]</span>
+</code></pre></div>
+<p>The correspondence is exact, and it is worth reading in both directions:</p>
+<table>
+<thead>
+<tr>
+<th>Registry</th>
+<th>Step 4 configuration</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Row number</td>
+<td>entry in <code>json_train</code></td>
+<td>which training configuration</td>
+</tr>
+<tr>
+<td>Green cells, shared across the group</td>
+<td><code>set_info</code></td>
+<td>the base feature set</td>
+</tr>
+<tr>
+<td>Green cells that vary within the group</td>
+<td><code>subset_info</code></td>
+<td>what is added or withheld</td>
+</tr>
+<tr>
+<td>Label column</td>
+<td><code>json_label</code></td>
+<td>which prepared labels — note set C uses label 7, which carries actual VPD rather than a placeholder</td>
+</tr>
+</tbody>
+</table>
+<p>Nothing in the pipeline enforces that correspondence. <code>set_info</code> and
+<code>subset_info</code> are free text used only as plot legends, so if they drift from what
+the referenced configurations actually do, the plots will be labelled wrongly and
+nothing will complain. <strong>The registry is what keeps them honest.</strong></p>
+<h3 id="why-this-stage-resists-automation">Why this stage resists automation<a class="headerlink" href="#why-this-stage-resists-automation" title="Permanent link">&para;</a></h3>
+<p>Steps 1 to 3 are mechanical: given a list of identifiers, the runs can be
+generated and submitted without judgement. Step 4 is different, and deliberately
+so.</p>
+<p>Deciding which runs belong in a collection means deciding what comparison is
+worth making — and that depends on what the previous collection showed. Several
+collections here were superseded as understanding developed: collections 6
+through 9 were replaced by collection 12 once it became clear the questions were
+better asked together.</p>
+<p>That loop — run, read, decide what to ask next — is research rather than
+configuration. Automating it would mean automating the judgement. What <em>can</em>
+be systematised is the bookkeeping underneath it, which is exactly what the
+registry does: it records what every configuration contained, so the person
+making the decision can see the whole space at once and pick a coherent slice.</p>
+<div class="admonition tip">
+<p class="admonition-title">Keeping a registry of your own</p>
+<p>Anyone running studies at this scale should keep the equivalent. It need not
+be a spreadsheet — the requirement is only that, for every training
+configuration, you can see at a glance which features it used, so that
+assembling a collection is selection rather than recall. The colour matrix
+above is a workable format to copy.</p>
+</div>
+<h2 id="applicability-beyond-wildfire">Applicability beyond wildfire<a class="headerlink" href="#applicability-beyond-wildfire" title="Permanent link">&para;</a></h2>
+<p>MLAP was built to study wildfire fuel moisture, and its default quantities are
+wildfire's. The <strong>architecture</strong>, though, assumes nothing about the domain. What
+it actually implements is a general shape:</p>
+<blockquote>
+<p>Relate a target variable at a reference time to the <strong>history of driving
+variables</strong> preceding it, sampled on a spatiotemporal grid, then train and
+compare models across a matrix of configurations.</p>
+</blockquote>
+<p>That shape recurs across atmospheric science. Substitute the target and the
+driving variables and the machinery is unchanged.</p>
+<h3 id="how-tightly-each-stage-is-bound-to-the-domain">How tightly each stage is bound to the domain<a class="headerlink" href="#how-tightly-each-stage-is-bound-to-the-domain" title="Permanent link">&para;</a></h3>
+<p>Counting wildfire-specific identifiers — <code>FM_*</code>, <code>UMag10</code>, <code>SWDOWN</code>, fuel,
+Nevada — across each stage's source gives a clear gradient:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Domain references</th>
+<th>Coupling</th>
+<th>What porting would need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Step 4</strong> Evaluate</td>
+<td>2</td>
+<td><strong>Negligible</strong></td>
+<td>Both are the variable name <code>FM_label_type</code>, which only carries <code>Regression</code>/<code>Binary</code>/<code>MultiClass</code>. Rename it and the stage is already generic</td>
+</tr>
+<tr>
+<td><strong>Step 3</strong> Train</td>
+<td>18</td>
+<td><strong>Low</strong></td>
+<td>Model construction, scaling and metrics are plain scikit-learn. Mostly hardcoded development paths and the same label-type name</td>
+</tr>
+<tr>
+<td><strong>Step 2</strong> Prepare</td>
+<td>47</td>
+<td><strong>Moderate</strong></td>
+<td>Label construction is generic — a threshold makes binary classes, a level list makes multi-class. The naming says FM, and the derived-feature computation (VPD) is meteorological</td>
+</tr>
+<tr>
+<td><strong>Step 1</strong> Extract</td>
+<td>66</td>
+<td><strong>High</strong></td>
+<td>The real coupling: NetCDF variable names, the domain clip, fire-event timestamps, and the quantity list</td>
+</tr>
+<tr>
+<td><strong>Step 5</strong> Analyze</td>
+<td>98</td>
+<td><strong>High</strong></td>
+<td>Fuel maps, region handling, and readers for specific data products</td>
+</tr>
+</tbody>
+</table>
+<p>The middle of the pipeline — the part that does the machine learning — is close
+to domain-neutral already. The coupling sits at the two ends, where data enters
+and where results are rendered.</p>
+<h3 id="what-transfers-unchanged">What transfers unchanged<a class="headerlink" href="#what-transfers-unchanged" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>The nomenclature.</strong> A (dataset, label, model) triple identifies a run
+  regardless of what is being predicted</li>
+<li><strong>JSON-driven staging</strong>, and the verification gates between stages</li>
+<li><strong>History-based feature construction</strong> — <span class="arithmatex">\(t_{max\_history}\)</span> and
+  <span class="arithmatex">\(t_{history}\)</span> describe any lagged-predictor problem</li>
+<li><strong>The collection matrix</strong>, and exhaustive metric capture at the run level</li>
+<li><strong>Regression, binary and multi-class</strong> handling, which is label-shape logic
+  rather than fuel-moisture logic</li>
+</ul>
+<h3 id="what-a-port-would-actually-involve">What a port would actually involve<a class="headerlink" href="#what-a-port-would-actually-involve" title="Permanent link">&para;</a></h3>
+<p><strong>Configuration only</strong>, if the new data resembles the existing source: point
+<code>qois_to_read</code> and <code>labels_to_read</code> at different variables, adjust the history
+window to the timescale of the new target, and map the source's variable names
+using the same mechanism that already supports HRRR and E3SM
+(<a href="../user-guide/step1-extract/#reading-other-data-sources">Step 1</a>).</p>
+<p><strong>Code changes</strong>, for anything further: a reader for a differently structured
+data product, domain-specific derived features in place of VPD, and rendering in
+Step 5 appropriate to the new target. Renaming the <code>FM_*</code> identifiers to
+something neutral would be cosmetic but worth doing.</p>
+<div class="admonition note">
+<p class="admonition-title">A claim about design, not a demonstration</p>
+<p>MLAP has only been run on wildfire fuel moisture. The generality above is
+assessed from the structure of the code, not from a port that has actually
+been carried out. The two ends of the pipeline would need real work; the
+middle would not.</p>
+</div>
+<h2 id="where-the-design-has-gaps">Where the design has gaps<a class="headerlink" href="#where-the-design-has-gaps" title="Permanent link">&para;</a></h2>
+<p><strong>Code-version provenance is absent.</strong> Results record parameters but not which
+code produced them. Two consequences observed: the <code>cols_feature</code> question above
+needed the author to resolve, and the archived Step 1 configurations will not run
+against current code following a deliberate key rename. A commit hash in the
+dataset metadata would close both.</p>
+<p><strong>Nothing validates configurations before submission.</strong> A typo surfaces as a key
+error hours into a long job — and if it is in a template used to generate
+hundreds of configurations, it is in all of them.</p>
+<p>Both gaps are in the code rather than the packaging, and both are additive.</p>
+<h2 id="deciphering-the-authors-architecting-and-research-skills">Deciphering the author's architecting and research skills<a class="headerlink" href="#deciphering-the-authors-architecting-and-research-skills" title="Permanent link">&para;</a></h2>
+<p>The rest of this page scores the pipeline. This section asks a different
+question of the same evidence: what do the artifacts say about the person who
+produced them?</p>
+<p><strong>Researcher first, software architect a close second.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Competency</th>
+<th>What the evidence shows</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Research design</strong></td>
+<td>27 evaluation collections whose names and numbering trace a deliberate sequence — establish the data, then the physics, then the model</td>
+<td><strong>Strong</strong></td>
+</tr>
+<tr>
+<td><strong>Architecting</strong></td>
+<td>Nomenclature, exhaustive metric capture and verification gates — decisions that pay off only years later, held without exception across 6,045 training outputs</td>
+<td><strong>Strong</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-archive-reads-as-a-research-programme-not-a-set-of-runs">The archive reads as a research programme, not a set of runs<a class="headerlink" href="#the-archive-reads-as-a-research-programme-not-a-set-of-runs" title="Permanent link">&para;</a></h3>
+<p>Collection numbering is chronological, so the archive records the order in which
+questions were asked. Grouped by what each one tests:</p>
+<table>
+<thead>
+<tr>
+<th>Collections</th>
+<th>Question being asked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eval_002</code>, <code>eval_003</code></td>
+<td>Is there enough data — sampled in time, and in space?</td>
+</tr>
+<tr>
+<td><code>eval_004</code>–<code>eval_010</code>, <code>eval_012</code></td>
+<td>Which physical quantities carry the signal?</td>
+</tr>
+<tr>
+<td><code>eval_011</code>, <code>eval_026</code></td>
+<td>How far back must history reach, and how finely must it be resolved?</td>
+</tr>
+<tr>
+<td><code>eval_014</code>–<code>eval_017</code></td>
+<td>Random Forest hyperparameters</td>
+</tr>
+<tr>
+<td><code>eval_018</code>–<code>eval_025</code></td>
+<td>MLP hyperparameters</td>
+</tr>
+</tbody>
+</table>
+<p>The sequence is <strong>data → physics → model</strong>, and it is the right one. Data
+sufficiency is settled before asking which variables matter, and both are settled
+before any effort goes into tuning. Hyperparameter studies — the most tempting
+place to start, and the least informative — were run last. The two model families
+are also swept symmetrically: four Random Forest studies, eight MLP studies, the
+same metrics on both, which is what makes the MLP shortfall attributable to the
+model rather than to uneven effort.</p>
+<p>Two further tells:</p>
+<ul>
+<li><strong>Collections were superseded, not accumulated.</strong> <code>eval_006</code> through <code>eval_010</code>
+  each vary one feature substitution in isolation; <code>eval_012</code> asks the same
+  question as a single combined comparison and replaces them. The earlier
+  collections were kept but stopped being cited — a revised question, not a
+  discarded run.</li>
+<li><strong>The ML work is instrumental.</strong> <code>Trends/</code> holds fuel-moisture series for four
+  climate epochs — 2015–2020, 2029–2034, 2044–2049 and 2094–2099. The pipeline
+  is not the object of study; a projection out to end-of-century is.</li>
+</ul>
+<h3 id="the-architecture-is-scar-tissue-not-pattern-following">The architecture is scar tissue, not pattern-following<a class="headerlink" href="#the-architecture-is-scar-tissue-not-pattern-following" title="Permanent link">&para;</a></h3>
+<p>The load-bearing design decisions are not generic software patterns. Each solves
+a problem that is only visible to someone who has personally lost time to it:</p>
+<ul>
+<li><strong>Exhaustive metric capture at Step 3, selective aggregation at Step 4.</strong> Seven
+  metrics on four evaluation sets are recorded for every model whether asked for
+  or not. This is what allowed the MLP diagnosis, from data collected eighteen
+  months earlier for another purpose.</li>
+<li><strong>A (dataset, label, model) triple in every filename.</strong> The
+  highest-leverage decision in the codebase.</li>
+<li><strong>Verification gates between stages.</strong> Initially misread by this review as a
+  missing dependency chain. They are the opposite: a flawed extraction must not
+  be able to propagate silently into trained models.</li>
+</ul>
+<p>That these are deliberate rather than accidental is itself visible in the
+archive. The conventions hold <strong>without exception</strong> across 27 collections and
+6,045 training outputs; accidental discipline does not survive at that scale.</p>
+<div class="admonition note">
+<p class="admonition-title">How this read was formed</p>
+<p>From the same basis as the rest of the page — the source code and the results
+archive — plus the author's responses to the twelve points originally held
+against a perfect score.</p>
+<p>Those responses are themselves evidence. Not one was defended on
+software-engineering grounds; every rebuttal was domain reasoning. The
+<code>U10</code>/<code>V10</code> conditional exists because the quantity of interest is wind
+magnitude. The <code>action</code> modes exist because extraction must be confirmed
+sound before anything downstream can be trusted. Collections are curated by
+hand because the next question depends on what the last one showed. Four of
+the twelve were rebutted or reclassified on that basis, and two materially
+reduced.</p>
+</div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traceability of results to configuration</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Interpretability of large studies</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Support for unanticipated analysis</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Naming discipline at scale</td>
+<td>Strong — held across 27 collections</td>
+</tr>
+<tr>
+<td>Archival of inputs with outputs</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Staged execution and verification</td>
+<td>Strong — deliberate</td>
+</tr>
+<tr>
+<td>Metadata self-description</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td>Code-version provenance</td>
+<td>Absent</td>
+</tr>
+<tr>
+<td>Pre-submission validation</td>
+<td>Absent</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The costly things to get right in a pipeline like this are the ones MLAP got
+right. Nomenclature, result aggregation and exhaustive metric capture are
+architectural: retrofitting them into a mature codebase is painful.</strong> The
+remaining gaps are additive and can be closed without disturbing the design.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Pankaj K. Jha &middot; Lawrence Livermore National Laboratory &middot; <a href="https://github.com/LLNL/MLAP">github.com/LLNL/MLAP</a> &middot; MIT License &middot; LLNL-CODE-2001016
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.top", "navigation.tracking", "content.code.copy", "search.highlight", "search.suggest", "toc.integrate", "toc.follow"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
